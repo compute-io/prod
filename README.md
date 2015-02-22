@@ -2,7 +2,7 @@ prod
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes the product over an array of values. 
+> Computes the product over an array of values.
 
 
 ## Installation
@@ -13,22 +13,30 @@ $ npm install compute-prod
 
 For use in the browser, use [browserify](https://github.com/substack/node-browserify).
 
-
 ## Usage
 
+To use the module,
+
 ``` javascript
-var foo = require( 'compute-prod' );
+var prod = require( 'compute-prod' );
 ```
-
-#### foo( arr )
-
-What does this function do?
-
 
 ## Examples
 
 ``` javascript
-var foo = require( 'compute-prod' );
+var prod = require( 'compute-prod' );
+
+var data = new Array( 10 );
+
+for ( var i = 0; i < data.length; i++ ) {
+  data[ i ] = Math.round( Math.random() * 10 + 1 )  ;
+}
+
+data.sort( function sort( a, b ) {
+  return a - b;
+});
+
+console.log( prod( data ) );
 ```
 
 To run the example code from the top-level application directory,
@@ -69,7 +77,7 @@ $ make view-cov
 ---
 ## License
 
-[MIT license](http://opensource.org/licenses/MIT). 
+[MIT license](http://opensource.org/licenses/MIT).
 
 
 ## Copyright
