@@ -1,7 +1,7 @@
 {
   "name": "compute-prod",
   "version": "0.0.0",
-  "description": "Computes the product over an array of values. ",
+  "description": "Computes the product of an array. ",
   "author": {
     "name": "Philipp Burckhardt",
     "email": "pburckhardt@outlook.com"
@@ -10,6 +10,10 @@
     {
       "name": "Philipp Burckhardt",
       "email": "pburckhardt@outlook.com"
+    },
+    {
+      "name": "Athan Reines",
+      "email": "kgryte@gmail.com"
     }
   ],
   "scripts": {
@@ -30,12 +34,17 @@
     "stats",
     "mathematics",
     "math",
-    "prod"  
+    "arithmetic",
+    "prod",
+    "product",
+    "array"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/prod/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "validate.io-array": "^1.0.3"
+  },
   "devDependencies": {
     "chai": "1.x.x",
     "mocha": "1.x.x",

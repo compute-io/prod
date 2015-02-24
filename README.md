@@ -1,8 +1,8 @@
-prod
+Product
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes the product over an array of values.
+> Computes the product of an array.
 
 
 ## Installation
@@ -15,11 +15,41 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ## Usage
 
-To use the module,
-
 ``` javascript
 var prod = require( 'compute-prod' );
 ```
+
+#### prod( arr[, accessor] )
+
+Computes the product of an `array`. For numeric `arrays`,
+
+``` javascript
+var arr = [ 1, 2, 3, 4 ];
+
+var value = prod( arr );
+// returns 24
+```
+
+For non-numeric `arrays`, provide an accessor `function` for accessing `array` values
+
+``` javascript
+var arr = [
+	{'x':1},
+	{'x':2},
+	{'x':3},
+	{'x':4}
+];
+
+function getValue( d ) {
+	return d.x;
+}
+
+var value = prod( arr, getValue );
+// returns 24
+```
+
+__Note__: if provided an empty `array`, the method returns `null`.
+
 
 ## Examples
 
@@ -27,14 +57,9 @@ var prod = require( 'compute-prod' );
 var prod = require( 'compute-prod' );
 
 var data = new Array( 10 );
-
 for ( var i = 0; i < data.length; i++ ) {
   data[ i ] = Math.round( Math.random() * 10 + 1 )  ;
 }
-
-data.sort( function sort( a, b ) {
-  return a - b;
-});
 
 console.log( prod( data ) );
 ```
