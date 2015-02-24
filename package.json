@@ -35,7 +35,8 @@
     "mathematics",
     "math",
     "prod",
-    "product"
+    "product",
+    "array"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/prod/issues"
