@@ -107,7 +107,7 @@ $ make view-cov
 
 ## Copyright
 
-Copyright &copy; 2015. Philipp Burckhardt.
+Copyright &copy; 2015. The Compute.io Authors.
 
 
 [npm-image]: http://img.shields.io/npm/v/compute-prod.svg
