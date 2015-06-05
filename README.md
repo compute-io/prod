@@ -48,7 +48,7 @@ function getValue( d ) {
 	return d.x;
 }
 
-var value = prod( arr, getValue );
+var value = prod( arr, {'accessor': getValue} );
 // returns 24
 ```
 
