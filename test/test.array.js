@@ -24,7 +24,7 @@ describe( 'array mean', function tests() {
 		expect( prod ).to.be.a( 'function' );
 	});
 
-	it( 'should compute the arithmetic mean', function test() {
+	it( 'should compute the product', function test() {
 		var data, expected;
 
 		data = [ 2, 4, 5, 3, 8, 2 ];

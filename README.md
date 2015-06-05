@@ -2,7 +2,7 @@ Product
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes the product of an array.
+> Computes the product of an array or matrix.
 
 
 ## Installation
@@ -118,12 +118,12 @@ data = [ 2, 4, 5 ];
 
 // Row vector:
 mat = matrix( new Int8Array( data ), [1,3], 'int8' );
-p = mean( mat );
+p = prod( mat );
 // returns 40
 
 // Column vector:
 mat = matrix( new Int8Array( data ), [3,1], 'int8' );
-p = mean( mat );
+p = prod( mat );
 // returns 40
 ```
 

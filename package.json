@@ -1,7 +1,7 @@
 {
   "name": "compute-prod",
   "version": "1.0.0",
-  "description": "Computes the product of an array. ",
+  "description": "Computes the product of an array or matrix.",
   "author": {
     "name": "Philipp Burckhardt",
     "email": "pburckhardt@outlook.com"
