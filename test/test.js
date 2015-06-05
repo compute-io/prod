@@ -3,7 +3,7 @@
 
 // MODULES //
 
-var matrix = require( 'compute-matrix' );
+var matrix = require( 'dstructs-matrix' );
 
 var // Expectation library:
 	chai = require( 'chai' ),
@@ -48,48 +48,20 @@ describe( 'compute-prod', function tests() {
 		}
 	});
 
-	it( 'should throw an error if `options` is not an object', function test() {
+	it( 'should throw an error if provided an unrecognized/unsupported data type option', function test() {
 		var values = [
-			'5',
-			5,
-			true,
-			undefined,
-			null,
-			NaN,
-			[],
-			function(){}
+			'beep',
+			'boop'
 		];
 
 		for ( var i = 0; i < values.length; i++ ) {
-			expect( badValue( values[ i ] ) ).to.throw( TypeError );
+			expect( badValue( values[i] ) ).to.throw( Error );
 		}
-
 		function badValue( value ) {
 			return function() {
-				prod( [1,2,3,4,5], value );
-			};
-		}
-	});
-
-	it( 'should throw an error if provided an accessor which is not a function', function test() {
-		var values = [
-			'5',
-			5,
-			true,
-			undefined,
-			null,
-			NaN,
-			[],
-			{}
-		];
-
-		for ( var i = 0; i < values.length; i++ ) {
-			expect( badValue( values[ i ] ) ).to.throw( TypeError );
-		}
-
-		function badValue( value ) {
-			return function() {
-				prod( [1,2,3,4,5], {'accessor': value} );
+				prod( matrix( [2,2] ), {
+					'dtype': value
+				});
 			};
 		}
 	});
@@ -142,7 +114,7 @@ describe( 'compute-prod', function tests() {
 		assert.isNull( prod( [] ) );
 	});
 
-	it( 'should compute the product', function test() {
+	it( 'should compute the product for an array', function test() {
 		var data, expected;
 
 		data = [ 2, 4, 5, 3, 8, 2 ];
@@ -150,6 +122,17 @@ describe( 'compute-prod', function tests() {
 
 		assert.strictEqual( prod( data ), expected );
 	});
+
+
+	it( 'should compute the product for a vector (matrix with one column or row)', function test() {
+		var data, expected;
+
+		expected = 1920;
+		data = matrix( new Int32Array( [ 2, 4, 5, 3, 8, 2 ] ), [6,1] );
+
+		assert.strictEqual( prod( data ), expected );
+	});
+
 
 	it( 'should compute the product using an accessor function', function test() {
 		var data, expected;

@@ -19,14 +19,18 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 var prod = require( 'compute-prod' );
 ```
 
-#### prod( arr[, accessor] )
+#### prod( x[, options] )
 
-Computes the product of an `array`. For numeric `arrays`,
+Computes the product of the elements in `x`. `x` may be either an [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays), or [`matrix`](https://github.com/dstructs/matrix).
 
 ``` javascript
-var arr = [ 1, 2, 3, 4 ];
+var data = [ 1, 2, 3, 4 ];
 
-var value = prod( arr );
+var p = prod( data );
+// returns 24
+
+data = new Int8Array( data );
+p = prod( data );
 // returns 24
 ```
 
@@ -48,20 +52,171 @@ var value = prod( arr, getValue );
 // returns 24
 ```
 
-__Note__: if provided an empty `array`, the method returns `null`.
+If provided a [`matrix`](https://github.com/dstructs/matrix), the function accepts the following `options`:
 
+*	__dim__: dimension along which to compute the product. Default: `2` (along the columns).
+*	__dtype__: output [`matrix`](https://github.com/dstructs/matrix) data type. Default: `float64`.
+
+By default, the function computes the product along the columns (`dim=2`).
+
+``` javascript
+var matrix = require( 'dstructs-matrix' ),
+	data,
+	mat,
+	p,
+	i;
+
+data = new Int8Array( 9 );
+for ( i = 0; i < data.length; i++ ) {
+	data[ i ] = i + 1;
+}
+mat = matrix( data, [3,3], 'int8' );
+/*
+	[  1 2 3
+	   4 5 6
+	   7 8 9 ]
+*/
+
+p = prod( mat );
+/*
+	[  6
+	   120
+	   504 ]
+*/
+```
+
+To compute the product along the rows, set the `dim` option to `1`.
+
+``` javascript
+p = prod( mat, {
+	'dim': 1
+});
+/*
+	[ 28 80 162 ]
+*/
+```
+
+By default, the output [`matrix`](https://github.com/dstructs/matrix) data type is `float64`. To specify a different output data type, set the `dtype` option.
+
+``` javascript
+p = prod( mat, {
+	'dim': 1,
+	'dtype': 'uint8'
+});
+/*
+	[ 28 80 162 ]
+*/
+
+var dtype = p.dtype;
+// returns 'uint8'
+```
+
+If provided a [`matrix`](https://github.com/dstructs/matrix) having either dimension equal to `1`, the function treats the [`matrix`](https://github.com/dstructs/matrix) as a [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays) and returns a `numeric` value.
+
+``` javascript
+data = [ 2, 4, 5 ];
+
+// Row vector:
+mat = matrix( new Int8Array( data ), [1,3], 'int8' );
+p = mean( mat );
+// returns 40
+
+// Column vector:
+mat = matrix( new Int8Array( data ), [3,1], 'int8' );
+p = mean( mat );
+// returns 40
+```
+
+If provided an empty [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays), or [`matrix`](https://github.com/dstructs/matrix), the function returns `null`.
+
+``` javascript
+p = prod( [] );
+// returns null
+
+p = prod( new Int8Array( [] ) );
+// returns null
+
+p = prod( matrix( [0,0] ) );
+// returns null
+
+p = prod( matrix( [0,10] ) );
+// returns null
+
+p = prod( matrix( [10,0] ) );
+// returns null
+```
 
 ## Examples
 
 ``` javascript
-var prod = require( 'compute-prod' );
+'use strict';
 
-var data = new Array( 10 );
+var matrix = require( 'dstructs-matrix' ),
+	prod = require( './../lib' );
+
+var data,
+	mat,
+	p,
+	i;
+
+// ----
+// Plain arrays...
+var data = new Array( 100 );
 for ( var i = 0; i < data.length; i++ ) {
-  data[ i ] = Math.round( Math.random() * 10 + 1 )  ;
+	data[ i ] = Math.round( Math.random() * 10 + 1 );
 }
+p = prod( data );
+console.log( 'Arrays: %d\n', p );
 
-console.log( prod( data ) );
+
+// ----
+// Object arrays (accessors)...
+function getValue( d ) {
+	return d.x;
+}
+for ( i = 0; i < data.length; i++ ) {
+	data[ i ] = {
+		'x': data[ i ]
+	};
+}
+p = prod( data, {
+	'accessor': getValue
+});
+console.log( 'Accessors: %d\n', p );
+
+
+// ----
+// Typed arrays...
+data = new Int32Array( 100 );
+for ( i = 0; i < data.length; i++ ) {
+	data[ i ] = Math.round( Math.random() * 10 + 1 );
+}
+p = prod( data );
+
+
+// ----
+// Matrices (along rows)...
+mat = matrix( data, [10,10], 'int32' );
+p = prod( mat, {
+	'dim': 1
+});
+console.log( 'Matrix (rows): %s\n', p.toString() );
+
+
+// ----
+// Matrices (along columns)...
+p = prod( mat, {
+	'dim': 2
+});
+console.log( 'Matrix (columns): %s\n', p.toString() );
+
+
+// ----
+// Matrices (custom output data type)...
+p = prod( mat, {
+	'dtype': 'uint8'
+});
+console.log( 'Matrix (%s): %s\n', p.dtype, p.toString() );
 ```
 
 To run the example code from the top-level application directory,
