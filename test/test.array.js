@@ -18,7 +18,7 @@ var expect = chai.expect,
 
 // TESTS //
 
-describe( 'array mean', function tests() {
+describe( 'array product', function tests() {
 
 	it( 'should export a function', function test() {
 		expect( prod ).to.be.a( 'function' );

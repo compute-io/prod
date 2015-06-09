@@ -149,10 +149,9 @@ p = prod( matrix( [10,0] ) );
 ## Examples
 
 ``` javascript
-'use strict';
 
 var matrix = require( 'dstructs-matrix' ),
-	prod = require( './../lib' );
+	prod = require( 'compute-prod' );
 
 var data,
 	mat,
