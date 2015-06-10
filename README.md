@@ -7,7 +7,7 @@ Product
 The [product](http://en.wikipedia.org/wiki/Product_%28mathematics%29#Product_of_sequences) is defined as
 
 <div class="equation" align="center" data-raw-text="\prod_{i=0}^{N-1} x_i = x_0 \cdot x_1 \cdot x_2 \cdots x_{N-2} \cdot x_{N-1}" data-equation="eq:product">
-	<img src="" alt="Equation for the sequence product.">
+	<img src="https://cdn.rawgit.com/compute-io/prod/b29e713ae98b12dcfa36a849fd0c6cff706006e3/docs/img/eqn.svg" alt="Equation for the sequence product.">
 	<br>
 </div>
 
