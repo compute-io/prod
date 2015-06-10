@@ -119,8 +119,8 @@ describe( 'compute-prod', function tests() {
 		}
 	});
 
-	it( 'should return null if provided an empty array', function test() {
-		assert.isNull( prod( [] ) );
+	it( 'should return 1 if provided an empty array', function test() {
+		assert.strictEqual( prod( [] ), 1 );
 	});
 
 	it( 'should compute the product of an array', function test() {
