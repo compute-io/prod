@@ -44,8 +44,8 @@ describe( 'accessor product', function tests() {
 		}
 	});
 
-	it( 'should return null if provided an empty array', function test() {
-		assert.isNull( prod( [], getValue ) );
+	it( 'should return 1 if provided an empty array', function test() {
+		assert.strictEqual( prod( [], getValue ), 1 );
 		function getValue( d ) {
 			return d.x;
 		}

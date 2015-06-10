@@ -33,8 +33,8 @@ describe( 'array product', function tests() {
 		assert.strictEqual( prod( data ), expected );
 	});
 
-	it( 'should return null if provided an empty array', function test() {
-		assert.isNull( prod( [] ) );
+	it( 'should return 1 if provided an empty array', function test() {
+		assert.strictEqual( prod( [] ), 1 );
 	});
 
 });

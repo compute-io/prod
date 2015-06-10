@@ -63,19 +63,19 @@ describe( 'matrix product', function tests() {
 		assert.strictEqual( p.toString(), expected );
 	});
 
-	it( 'should return null if provided a matrix having one or more zero dimensions', function test() {
+	it( 'should return 1 if provided a matrix having one or more zero dimensions', function test() {
 		var out, mat;
 
 		out = matrix( [0,0] );
 
 		mat = matrix( [0,10] );
-		assert.isNull( prod( out, mat ) );
+		assert.strictEqual( prod( out, mat ), 1 );
 
 		mat = matrix( [10,0] );
-		assert.isNull( prod( out, mat ) );
+		assert.strictEqual( prod( out, mat ), 1 );
 
 		mat = matrix( [0,0] );
-		assert.isNull( prod( out, mat ) );
+		assert.strictEqual( prod( out, mat ), 1 );
 	});
 
 });

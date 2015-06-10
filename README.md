@@ -4,6 +4,15 @@ Product
 
 > Computes the product.
 
+The [product](http://en.wikipedia.org/wiki/Product_%28mathematics%29#Product_of_sequences) is defined as
+
+<div class="equation" align="center" data-raw-text="\prod_{i=0}^{N-1} x_i = x_0 \cdot x_1 \cdot x_2 \cdots x_{N-2} \cdot x_{N-1}" data-equation="eq:product">
+	<img src="" alt="Equation for the sequence product.">
+	<br>
+</div>
+
+where `x_0, x_1,...,x_{N-1}` are individual data values and `N` is the total number of values in the data set.
+
 
 ## Installation
 
@@ -129,23 +138,23 @@ p = prod( mat );
 // returns 40
 ```
 
-If provided an empty [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays), or [`matrix`](https://github.com/dstructs/matrix), the function returns `null`.
+If provided an empty [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays), or [`matrix`](https://github.com/dstructs/matrix), the function returns the [empty product](http://en.wikipedia.org/wiki/Empty_product) which is equal to `1`.
 
 ``` javascript
 p = prod( [] );
-// returns null
+// returns 1
 
 p = prod( new Int8Array( [] ) );
-// returns null
+// returns 1
 
 p = prod( matrix( [0,0] ) );
-// returns null
+// returns 1
 
 p = prod( matrix( [0,10] ) );
-// returns null
+// returns 1
 
 p = prod( matrix( [10,0] ) );
-// returns null
+// returns 1
 ```
 
 
