@@ -22,7 +22,6 @@ var expect = chai.expect,
 // TESTS //
 
 describe( 'matrix product', function tests() {
-
 	var data,
 		mat,
 		i;
@@ -32,7 +31,6 @@ describe( 'matrix product', function tests() {
 		data[ i ] = i + 1;
 	}
 	mat = matrix( data, [3,3], 'int8' );
-
 
 	it( 'should export a function', function test() {
 		expect( prod ).to.be.a( 'function' );

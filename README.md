@@ -2,7 +2,7 @@ Product
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes the product of an array or matrix.
+> Computes the product.
 
 
 ## Installation
@@ -34,7 +34,7 @@ p = prod( data );
 // returns 24
 ```
 
-For non-numeric `arrays`, provide an accessor `function` for accessing `array` values
+For non-numeric `arrays`, provide an accessor `function` for accessing `array` values.
 
 ``` javascript
 var arr = [
@@ -48,7 +48,9 @@ function getValue( d ) {
 	return d.x;
 }
 
-var value = prod( arr, {'accessor': getValue} );
+var value = prod( arr, {
+	'accessor': getValue
+});
 // returns 24
 ```
 
@@ -146,10 +148,10 @@ p = prod( matrix( [10,0] ) );
 // returns null
 ```
 
+
 ## Examples
 
 ``` javascript
-
 var matrix = require( 'dstructs-matrix' ),
 	prod = require( 'compute-prod' );
 
@@ -158,17 +160,13 @@ var data,
 	p,
 	i;
 
-// ----
 // Plain arrays...
 var data = new Array( 100 );
 for ( var i = 0; i < data.length; i++ ) {
 	data[ i ] = Math.round( Math.random() * 10 + 1 );
 }
 p = prod( data );
-console.log( 'Arrays: %d\n', p );
 
-
-// ----
 // Object arrays (accessors)...
 function getValue( d ) {
 	return d.x;
@@ -181,10 +179,7 @@ for ( i = 0; i < data.length; i++ ) {
 p = prod( data, {
 	'accessor': getValue
 });
-console.log( 'Accessors: %d\n', p );
 
-
-// ----
 // Typed arrays...
 data = new Int32Array( 100 );
 for ( i = 0; i < data.length; i++ ) {
@@ -192,30 +187,21 @@ for ( i = 0; i < data.length; i++ ) {
 }
 p = prod( data );
 
-
-// ----
 // Matrices (along rows)...
 mat = matrix( data, [10,10], 'int32' );
 p = prod( mat, {
 	'dim': 1
 });
-console.log( 'Matrix (rows): %s\n', p.toString() );
 
-
-// ----
 // Matrices (along columns)...
 p = prod( mat, {
 	'dim': 2
 });
-console.log( 'Matrix (columns): %s\n', p.toString() );
 
-
-// ----
 // Matrices (custom output data type)...
 p = prod( mat, {
 	'dtype': 'uint8'
 });
-console.log( 'Matrix (%s): %s\n', p.dtype, p.toString() );
 ```
 
 To run the example code from the top-level application directory,
@@ -261,7 +247,7 @@ $ make view-cov
 
 ## Copyright
 
-Copyright &copy; 2015. The Compute.io Authors.
+Copyright &copy; 2015. The [Compute.io](https://github.com/compute-io) Authors.
 
 
 [npm-image]: http://img.shields.io/npm/v/compute-prod.svg

@@ -46,7 +46,6 @@ describe( 'accessor product', function tests() {
 
 	it( 'should return null if provided an empty array', function test() {
 		assert.isNull( prod( [], getValue ) );
-
 		function getValue( d ) {
 			return d.x;
 		}
